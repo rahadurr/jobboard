@@ -1,0 +1,4 @@
+class  MyResume < ApplicationRecord
+  
+
+end

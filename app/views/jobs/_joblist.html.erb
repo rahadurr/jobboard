@@ -1,0 +1,30 @@
+
+ <% if can? [:read ,:update ,:destroy] , @job %>
+ <%= link_to "New"  , new_job_path , class: "btn btn-bg btn-dark new" %>
+ <%end%>
+ <div class="row">
+   <% @job.each do |job| %>
+   <div class="col-12">
+     <div class="card">
+       <div class="card-body">
+         <h5><%= job.title %>
+           <% if can? [:read,:create ,:destroy ] , job %>
+           <% if job.status == 'published'%> <span class="badge badge-success text-capitalize"><%= job.status %></span> <% end %>
+           <% if job.status == 'draft'%> <span class="badge badge-secondary text-capitalize"><%= job.status %></span> <% end %>
+           <% if job.status == 'completed'%> <span class="badge badge-primary text-capitalize"><%= job.status %></span> <% end %>
+         <%end %>
+         </h5> 
+         <p><%= job.description %></p>
+        
+ 
+         <%= link_to "Show" , job_path(job) , class: "btn btn-sm btn-primary" %>
+         <% if can? [:update ,:destroy] , job %>
+         <%= link_to "Edit" , edit_job_path(job)  , class: "btn btn-sm btn-warning" %>
+         <%= link_to "Delete" , job_path(job) , method: :delete , data: {confirm: " Are you sure to delete this job ?"} , class: "btn btn-sm btn-danger" %>   
+         <%= link_to "Candidate Resumes" , job_resumes_path(job) , class: "btn btn-sm btn-info" %>
+         <%end %>
+       </div>
+     </div>
+   </div>
+   <% end %>
+ </div>

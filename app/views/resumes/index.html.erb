@@ -1,0 +1,31 @@
+<% if can? [:read ,:create , :destroy] , @job %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Job Title </th>
+      <th scope="col">Candidate name </th>
+      <th scope="col">Candidate Email </th>
+      <th scope="col"> Candidate Resume</th>
+      <th scope="col">Submitted At</th>
+      <th scope="col">Application</th>
+   
+    </tr>
+  </thead>
+  <tbody>
+  <% @resumes.each do |i| %>
+  
+    <tr>
+      <th scope="row"><%= i.job.title %></th>
+      <th scope="row"><%= i.user.username %></th>
+      <th scope="row"><%= i.user.email %></th>
+      <td>
+        <%= link_to 'Download', i.attachment_url, download: '', target: :_blank, class:"Links" %>
+      </td>
+      <td><%= time_ago_in_words i.created_at %></td>
+      <td><%= link_to  'Open application' ,   [i.job, i] , class:"Links"%></td>
+     
+    </tr>
+ <% end%>
+  </tbody>
+</table>
+<%end%>

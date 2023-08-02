@@ -1,0 +1,24 @@
+<div class="main-container">
+   <div class="heading">
+      <h1 class="heading__title">Candidate Resume Details</h1>
+   </div>
+   <% if @resume.is_seen %>
+   <div class="cards">
+      <div class="card card-1">
+         <p class="card__exit"><i class="fas fa-times"></i></p>
+         <h2 class="card__title">Candidate name : <span> <%= @resume.user.username%></span>
+         </h2>
+         <h2 class="card__title">Candidate email : <span> <%= @resume.user.email%></span>
+         </h2>
+         <h2 class="card__title">Cover letter : <span> <%= @resume.cover_letter%></span>
+         </h2>
+         <p>
+            <p> Click to download Resume : </p>
+            <%= link_to 'Download', @resume.attachment_url, download: '', target: :_blank, class:"Links" %>
+         </p>
+
+      </div>
+
+   </div>
+   <% end %>
+</div>

@@ -1,0 +1,41 @@
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Job Title </th>
+        <th scope="col">Seen By Admin </th>
+        <th scope="col">Submitted At</th>
+        <th scope="col">Resume File</th>
+     
+      </tr>
+    </thead>
+    <tbody>
+    <% current_user.resumes.each do |i| %>   
+      <tr>
+        <% if i.job %>
+            <td><%= link_to i.job.title, job_path(i.job) ,class:"Links" %></td>
+            <%else%>
+            <td>
+              This job was deleted by Admin
+            </td>
+          <% end %>
+        
+          <% if i.is_seen  %>
+          <td style="color: green ;">
+            Seen
+          </td>
+          <% else %>
+          <td style="color: rgb(156, 14, 14) ;">
+            Not seen yet
+          </td>
+          <% end %>
+        <td><%= time_ago_in_words i.created_at %></td>
+        <td>
+          <%= link_to 'Download', i.attachment_url, download: '', target: :_blank, class:"Links" %>
+        </td>
+       
+      </tr>
+   <% end%>
+    </tbody>
+  </table>
+ 

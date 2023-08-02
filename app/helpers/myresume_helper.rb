@@ -1,0 +1,2 @@
+module MyresumeHelper
+end

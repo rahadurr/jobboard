@@ -1,0 +1,31 @@
+<div class="main-container">
+  <div class="heading">
+    <h1 class="heading__title">Job Details</h1>
+  </div>
+
+  <div class="cards">
+    <div class="card card-1">
+      <p class="card__exit"><i class="fas fa-times"></i></p>
+
+      <h2 class="card__title">Job title : <span><%= @job.title %></span>
+      </h2>
+      <h2 class="card__title">Job description : <span> <%=  @job.description%></span>
+      </h2>
+      <div> <span class="badge badge-success text-capitalize"><%= @job.status %></span> </div>
+      <p>Created Date: <%= @job.created_at %></p>
+      <% if user_signed_in? %>
+
+      <% if current_user.applied_job?(@job.id)%>
+      <%= link_to 'Cancel Applied' , [@job, current_user.applied_job?(@job.id)] ,method: :delete, data: { confirm: 'Are you sure?'}, class: 'btn btn-danger'  %>
+
+      <% else %>
+      <%= render 'apply' %>
+      <% end  %>
+
+      <% end %>
+
+    </div>
+
+  </div>
+
+</div>
